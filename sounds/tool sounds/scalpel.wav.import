@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wv2lxl46n4vj"
+path="res://.godot/imported/scalpel.wav-8a72a21e82cf4a7e265cb415e4d2babf.sample"
+
+[deps]
+
+source_file="res://sounds/tool sounds/scalpel.wav"
+dest_files=["res://.godot/imported/scalpel.wav-8a72a21e82cf4a7e265cb415e4d2babf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=3008
+edit/loop_end=6003
+compress/mode=0

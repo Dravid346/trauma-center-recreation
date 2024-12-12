@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://0orm5edf50qf"]
+
+[ext_resource type="Script" path="res://operations/base materials/base_organ.gd" id="1_h7kem"]
+[ext_resource type="Texture2D" uid="uid://blgahr6g0y58p" path="res://sprites/backgrounds/Chest.jpg" id="2_us8si"]
+[ext_resource type="PackedScene" uid="uid://dsvi80xu32und" path="res://wounds/complete/incision.tscn" id="3_mxjho"]
+
+[node name="BaseOrgan" type="Node2D"]
+script = ExtResource("1_h7kem")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(576, 320)
+scale = Vector2(1.45302, 1.45302)
+texture = ExtResource("2_us8si")
+
+[node name="Incision" parent="." instance=ExtResource("3_mxjho")]
+position = Vector2(467, 318)

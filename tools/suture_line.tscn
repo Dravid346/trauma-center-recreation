@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhjjbtwe772dj"]
+
+[ext_resource type="Script" path="res://tools/suture_line.gd" id="1_d5lkw"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_kboro"]
+
+[node name="SutureLine" type="Line2D" groups=["spawnable"]]
+top_level = true
+z_index = 3
+width = 3.0
+script = ExtResource("1_d5lkw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_kboro")

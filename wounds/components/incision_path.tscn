@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdv2tg03f2okc"]
+
+[ext_resource type="Script" path="res://wounds/components/incision_path.gd" id="1_nxgne"]
+[ext_resource type="PackedScene" uid="uid://dh4fivncorysq" path="res://wounds/components/incision_dot.tscn" id="2_8w6ul"]
+
+[sub_resource type="Curve2D" id="Curve2D_p4mqp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 169, 393, 0, 0, 0, 0, 597, 280, 0, 0, 0, 0, 688, 551, 0, 0, 0, 0, 825, 192)
+}
+point_count = 4
+
+[node name="IncisionPath" type="Path2D"]
+z_index = 2
+curve = SubResource("Curve2D_p4mqp")
+script = ExtResource("1_nxgne")
+dot_scene = ExtResource("2_8w6ul")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(169, 393)
+rotation = -0.258129
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+width = 3.0

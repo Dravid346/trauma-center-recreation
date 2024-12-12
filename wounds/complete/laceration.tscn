@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b147c65bby81r"]
+
+[ext_resource type="PackedScene" uid="uid://cyq1uio4dcbqv" path="res://wounds/components/suturable.tscn" id="1_foyb6"]
+[ext_resource type="Script" path="res://wounds/complete/laceration.gd" id="1_rcdaw"]
+[ext_resource type="Texture2D" uid="uid://glb1n8ysuy6x" path="res://sprites/wounds/incision.jpeg" id="2_rt6fe"]
+[ext_resource type="PackedScene" uid="uid://cow5oypqletbu" path="res://wounds/components/passive_damager.tscn" id="4_xg3at"]
+
+[node name="Laceration" type="Node2D"]
+script = ExtResource("1_rcdaw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rt6fe")
+
+[node name="Suturable" parent="." instance=ExtResource("1_foyb6")]
+scale = Vector2(1, 1.62)
+required_score = 4.0
+
+[node name="PassiveDamager" parent="." instance=ExtResource("4_xg3at")]
+damage = 0.1
+
+[connection signal="being_hit" from="Suturable" to="." method="_on_suturable_being_hit"]

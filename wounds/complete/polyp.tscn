@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://csk3pn4rhpkx7"]
+
+[ext_resource type="Script" path="res://wounds/complete/polyp.gd" id="1_i1gcp"]
+[ext_resource type="PackedScene" uid="uid://2g2n60t72iok" path="res://wounds/components/gelable.tscn" id="2_cba7x"]
+[ext_resource type="PackedScene" uid="uid://c7y6fwedv0ax4" path="res://wounds/components/laserable.tscn" id="3_md002"]
+[ext_resource type="Texture2D" uid="uid://d181ldbe66r3t" path="res://sprites/wounds/polyp1.png" id="4_0kr3x"]
+[ext_resource type="Texture2D" uid="uid://dnud360cs7bqd" path="res://sprites/wounds/polyp2.png" id="5_v2ms5"]
+[ext_resource type="PackedScene" uid="uid://cow5oypqletbu" path="res://wounds/components/passive_damager.tscn" id="6_wa6pe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dmj4"]
+radius = 51.1566
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5von4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0kr3x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v2ms5")
+}],
+"loop": true,
+"name": &"popped",
+"speed": 5.0
+}]
+
+[node name="Polyp" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_i1gcp")
+
+[node name="Gelable" parent="." instance=ExtResource("2_cba7x")]
+enabled = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gelable"]
+shape = SubResource("CircleShape2D_8dmj4")
+
+[node name="Laserable" parent="." instance=ExtResource("3_md002")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laserable"]
+shape = SubResource("CircleShape2D_8dmj4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5von4")
+
+[node name="PassiveDamager" parent="." instance=ExtResource("6_wa6pe")]
+damage = 0.05
+
+[connection signal="being_hit" from="Gelable" to="." method="gelled"]
+[connection signal="treated" from="Laserable" to="." method="popped"]

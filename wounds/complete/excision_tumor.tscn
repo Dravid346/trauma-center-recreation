@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsx4vxeevop2l"]
+
+[ext_resource type="Script" path="res://wounds/complete/excision_tumor.gd" id="1_jmr8p"]
+[ext_resource type="Texture2D" uid="uid://dtns2ucvtmngw" path="res://sprites/wounds/excision_tumor.png" id="2_3vtr3"]
+[ext_resource type="PackedScene" uid="uid://6okakmulixyn" path="res://wounds/components/scalpel_path.tscn" id="3_mwtps"]
+
+[sub_resource type="Curve2D" id="Curve2D_nl1ni"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4, -54, 0, 0, 0, 0, -32, -45, 0, 0, 0, 0, -54, -21, 0, 0, 0, 0, -60, 1, 0, 0, 0, 0, -52, 27, 0, 0, 0, 0, -26, 52, 0, 0, 0, 0, 4, 55, 0, 0, 0, 0, 33, 46, 0, 0, 0, 0, 51, 27, 0, 0, 0, 0, 60, 2, 0, 0, 0, 0, 56, -20, 0, 0, 0, 0, 40, -42, 0, 0, 0, 0, 28, -48, 0, 0, 0, 0, 4, -54)
+}
+point_count = 14
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjn03"]
+radius = 57.0789
+
+[node name="ExcisionTumor" type="Area2D"]
+position = Vector2(622, 335)
+script = ExtResource("1_jmr8p")
+grab_type = "disabled"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_3vtr3")
+
+[node name="ScalpelPath" parent="." instance=ExtResource("3_mwtps")]
+curve = SubResource("Curve2D_nl1ni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yjn03")
+
+[connection signal="treated" from="ScalpelPath" to="." method="excised"]

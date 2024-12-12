@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7t4xbw4n26ma"]
+
+[ext_resource type="PackedScene" uid="uid://csjtcqrh4w5kd" path="res://wounds/components/scalpelable.tscn" id="1_0o5s6"]
+[ext_resource type="Script" path="res://wounds/components/scalpel_dot.gd" id="1_ijyx1"]
+
+[sub_resource type="Gradient" id="Gradient_e68tb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.701299)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hf4n5"]
+gradient = SubResource("Gradient_e68tb")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7xk0"]
+radius = 15.0333
+
+[node name="ScalpelDot" type="Sprite2D"]
+texture = SubResource("GradientTexture2D_hf4n5")
+script = ExtResource("1_ijyx1")
+
+[node name="Scalpelable" parent="." instance=ExtResource("1_0o5s6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scalpelable"]
+shape = SubResource("CircleShape2D_m7xk0")
+
+[connection signal="being_scalpeled" from="Scalpelable" to="." method="scalpel_touch"]

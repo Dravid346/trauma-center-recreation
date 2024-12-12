@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpaeg4q6j6dgb"]
+
+[ext_resource type="Script" path="res://wounds/complete/laser_tumor.gd" id="1_r4q6h"]
+[ext_resource type="PackedScene" uid="uid://c7y6fwedv0ax4" path="res://wounds/components/laserable.tscn" id="2_ykrmt"]
+[ext_resource type="Texture2D" uid="uid://hmrs3k3q8vi0" path="res://sprites/wounds/laser_tumor_1.png" id="3_xdckt"]
+[ext_resource type="Texture2D" uid="uid://duox8xx7k8eo6" path="res://sprites/wounds/laser_tumor_2.png" id="4_h3dix"]
+[ext_resource type="PackedScene" uid="uid://cow5oypqletbu" path="res://wounds/components/passive_damager.tscn" id="5_hdues"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_na4d2"]
+radius = 143.056
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5trt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xdckt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h3dix")
+}],
+"loop": true,
+"name": &"lasered",
+"speed": 5.0
+}]
+
+[node name="LaserTumor" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_r4q6h")
+drop_damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_na4d2")
+
+[node name="Laserable" parent="." instance=ExtResource("2_ykrmt")]
+health = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laserable"]
+shape = SubResource("CircleShape2D_na4d2")
+
+[node name="LaserTumorSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e5trt")
+
+[node name="GradeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PassiveDamager" parent="." instance=ExtResource("5_hdues")]
+damage = 0.5
+
+[connection signal="treated" from="Laserable" to="." method="laser_me_daddy"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://e666gpmgy27r"]
+
+[ext_resource type="Script" path="res://wounds/components/draggable.gd" id="1_nto8b"]
+[ext_resource type="Texture2D" uid="uid://lbc4c1kxs51s" path="res://icon.svg" id="2_2upcc"]
+[ext_resource type="PackedScene" uid="uid://cow5oypqletbu" path="res://wounds/components/passive_damager.tscn" id="3_bi52j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gems"]
+size = Vector2(128, 128)
+
+[node name="Draggable" type="Area2D"]
+script = ExtResource("1_nto8b")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3gems")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2upcc")
+
+[node name="PassiveDamager" parent="." instance=ExtResource("3_bi52j")]
+damage = 0.3

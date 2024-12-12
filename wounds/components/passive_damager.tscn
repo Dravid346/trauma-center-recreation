@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cow5oypqletbu"]
+
+[ext_resource type="Script" path="res://wounds/components/passive_damager.gd" id="1_4wj17"]
+
+[node name="PassiveDamager" type="Node"]
+script = ExtResource("1_4wj17")

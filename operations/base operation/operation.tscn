@@ -1,0 +1,126 @@
+[gd_scene load_steps=18 format=3 uid="uid://h2o6t8u60ay0"]
+
+[ext_resource type="Script" path="res://operations/base materials/operation.gd" id="1_adfud"]
+[ext_resource type="PackedScene" uid="uid://cckpkb28k0qt1" path="res://operations/base operation/base_organ.tscn" id="2_375hq"]
+[ext_resource type="PackedScene" uid="uid://cp2lhd3hpa055" path="res://tools/toolbox.tscn" id="5_l7u03"]
+[ext_resource type="Script" path="res://operations/base materials/vitals.gd" id="5_p5kv8"]
+[ext_resource type="PackedScene" uid="uid://cow5oypqletbu" path="res://wounds/components/passive_damager.tscn" id="7_v8fm5"]
+[ext_resource type="Script" path="res://operations/base materials/start_end_stuff.gd" id="8_h0ce2"]
+[ext_resource type="PackedScene" uid="uid://cukrqe2mrlm6g" path="res://operations/base materials/score_keeper.tscn" id="9_xe44e"]
+[ext_resource type="AudioStream" uid="uid://cffgxyyj1qf3m" path="res://sounds/system sounds/Lets begin.mp3" id="9_yk7yi"]
+[ext_resource type="PackedScene" uid="uid://cl6lc2lvdmhcf" path="res://operations/base materials/grade_popup.tscn" id="10_cjy71"]
+[ext_resource type="AudioStream" uid="uid://dbb4t8d7cnq4v" path="res://sounds/system sounds/Operation Complete.mp3" id="10_cy4cu"]
+[ext_resource type="AudioStream" uid="uid://b2yw052c3thpx" path="res://sounds/system sounds/grade letter and completion.wav" id="11_asuoj"]
+[ext_resource type="AudioStream" uid="uid://hf84drnumm4q" path="res://sounds/system sounds/operation failed.wav" id="12_1tof7"]
+[ext_resource type="AudioStream" uid="uid://bpi7gbs1dh31n" path="res://sounds/bgm/Operation1.mp3" id="13_q0ct6"]
+
+[sub_resource type="Gradient" id="Gradient_t2rm8"]
+colors = PackedColorArray(0.33, 0, 0, 1, 0.33, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yu8bq"]
+gradient = SubResource("Gradient_t2rm8")
+
+[sub_resource type="Gradient" id="Gradient_88bv6"]
+offsets = PackedFloat32Array(0, 0.992958, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_336bm"]
+gradient = SubResource("Gradient_88bv6")
+
+[node name="Operation" type="Node"]
+script = ExtResource("1_adfud")
+stages = Array[PackedScene]([ExtResource("2_375hq")])
+
+[node name="ScoreKeeper" parent="." instance=ExtResource("9_xe44e")]
+label_scene = ExtResource("10_cjy71")
+
+[node name="Toolbox" parent="." instance=ExtResource("5_l7u03")]
+
+[node name="Vitals" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_p5kv8")
+
+[node name="VitalsLabel" type="Label" parent="Vitals"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 87.0
+offset_top = -8.0
+offset_right = 201.0
+offset_bottom = 129.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "60"
+horizontal_alignment = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="Vitals"]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 48.0
+offset_right = 733.0
+offset_bottom = 72.0
+max_value = 99.0
+step = 0.0
+value = 60.0
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_yu8bq")
+texture_progress = SubResource("GradientTexture1D_336bm")
+
+[node name="VitalsName" type="Label" parent="Vitals"]
+layout_mode = 1
+offset_left = 236.0
+offset_top = 3.0
+offset_right = 333.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 30
+text = "VITALS"
+horizontal_alignment = 2
+
+[node name="PassiveDamager" parent="." instance=ExtResource("7_v8fm5")]
+damage = 0.2
+
+[node name="StartEndStuff" type="Control" parent="."]
+process_mode = 2
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_h0ce2")
+
+[node name="Panel" type="Panel" parent="StartEndStuff"]
+layout_mode = 0
+offset_top = 274.0
+offset_right = 1152.0
+offset_bottom = 374.0
+
+[node name="Label" type="Label" parent="StartEndStuff/Panel"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 70
+text = "OPERATION SUCCESSFUL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetsBegin" type="AudioStreamPlayer" parent="StartEndStuff"]
+stream = ExtResource("9_yk7yi")
+
+[node name="OperationComplete" type="AudioStreamPlayer" parent="StartEndStuff"]
+stream = ExtResource("10_cy4cu")
+
+[node name="GradeLetterAndCompletion" type="AudioStreamPlayer" parent="StartEndStuff"]
+stream = ExtResource("11_asuoj")
+
+[node name="OperationFailed" type="AudioStreamPlayer" parent="StartEndStuff"]
+stream = ExtResource("12_1tof7")
+
+[node name="MusicManager" type="Node" parent="."]
+
+[node name="Operation1" type="AudioStreamPlayer" parent="MusicManager"]
+stream = ExtResource("13_q0ct6")
+
+[connection signal="operation_failed" from="Vitals" to="." method="_on_vitals_operation_failed"]

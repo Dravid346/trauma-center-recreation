@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://maqgmtoowomc"]
+
+[ext_resource type="Script" path="res://wounds/components/bandagable.gd" id="1_f8rc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufwr2"]
+size = Vector2(55, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2o3v"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fqet"]
+radius = 2.0
+
+[node name="Bandagable" type="Area2D" groups=["bandagable"]]
+script = ExtResource("1_f8rc8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ufwr2")
+
+[node name="PointA" type="Area2D" parent="."]
+position = Vector2(0, -25)
+
+[node name="CollisionA" type="CollisionShape2D" parent="PointA"]
+shape = SubResource("CircleShape2D_d2o3v")
+
+[node name="PointB" type="Area2D" parent="."]
+position = Vector2(0, 25)
+
+[node name="CollisionB" type="CollisionShape2D" parent="PointB"]
+shape = SubResource("CircleShape2D_5fqet")

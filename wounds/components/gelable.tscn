@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2g2n60t72iok"]
+
+[ext_resource type="Script" path="res://wounds/components/gelable.gd" id="1_oysbo"]
+
+[node name="Gelable" type="Area2D" groups=["gelable"]]
+script = ExtResource("1_oysbo")

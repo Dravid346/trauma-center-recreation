@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://l12plm0niq0f"]
+
+[ext_resource type="PackedScene" uid="uid://1pc3tbmwamrx" path="res://operations/playable demo/demo operation.tscn" id="1_plhr6"]
+
+[node name="Main" type="Node"]
+
+[node name="DemoOperation" parent="." instance=ExtResource("1_plhr6")]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl6lc2lvdmhcf"]
+
+[ext_resource type="Script" path="res://operations/base materials/grade_popup.gd" id="1_1okox"]
+
+[node name="GradePopup" type="Line2D"]
+z_index = 5
+points = PackedVector2Array(1, 1, 18, -16, 65, -16)
+width = 3.0
+default_color = Color(1, 0.592157, 0, 1)
+script = ExtResource("1_1okox")
+
+[node name="OkLabel" type="Label" parent="."]
+offset_left = 11.0
+offset_top = -40.0
+offset_right = 65.0
+offset_bottom = -17.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "OK"
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.663
+autostart = true
+
+[node name="GradeLabel" type="Label" parent="."]
+offset_left = 15.0
+offset_top = -17.0
+offset_right = 66.0
+offset_bottom = 6.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

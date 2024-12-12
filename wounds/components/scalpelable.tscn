@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csjtcqrh4w5kd"]
+
+[ext_resource type="Script" path="res://wounds/components/scalpelable.gd" id="1_r3ub0"]
+
+[node name="Scalpelable" type="Area2D" groups=["scalpelable"]]
+script = ExtResource("1_r3ub0")

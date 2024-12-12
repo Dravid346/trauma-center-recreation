@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cukrqe2mrlm6g"]
+
+[ext_resource type="Script" path="res://operations/base materials/score_keeper.gd" id="1_emwb4"]
+[ext_resource type="AudioStream" uid="uid://d2cm71tpf4b6w" path="res://sounds/system sounds/cool.wav" id="2_n300d"]
+[ext_resource type="AudioStream" uid="uid://dogeifxf5tcqk" path="res://sounds/system sounds/ok.wav" id="3_u6xa5"]
+[ext_resource type="AudioStream" uid="uid://bo18q2g52sqrq" path="res://sounds/system sounds/miss.wav" id="4_p5532"]
+
+[node name="ScoreKeeper" type="Node"]
+script = ExtResource("1_emwb4")
+
+[node name="Cool" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_n300d")
+
+[node name="Ok" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_u6xa5")
+
+[node name="Miss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p5532")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7y6fwedv0ax4"]
+
+[ext_resource type="Script" path="res://wounds/components/laserable.gd" id="1_t15q4"]
+
+[node name="Laserable" type="Area2D" groups=["laserable"]]
+script = ExtResource("1_t15q4")

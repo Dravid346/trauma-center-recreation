@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brgqb8kjh711d"]
+
+[ext_resource type="Script" path="res://operations/base materials/vitals.gd" id="1_k18gf"]
+
+[node name="Vitals" type="Node"]
+script = ExtResource("1_k18gf")

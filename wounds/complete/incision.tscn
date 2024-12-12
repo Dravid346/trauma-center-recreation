@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsvi80xu32und"]
+
+[ext_resource type="Script" path="res://wounds/complete/incision.gd" id="1_aq2jp"]
+[ext_resource type="PackedScene" uid="uid://bdv2tg03f2okc" path="res://wounds/components/incision_path.tscn" id="2_a1o1o"]
+[ext_resource type="Texture2D" uid="uid://glb1n8ysuy6x" path="res://sprites/wounds/incision.jpeg" id="3_ic0u2"]
+
+[sub_resource type="Curve2D" id="Curve2D_gcq5k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -160, 0, 0, 0, 0, 0, 160)
+}
+point_count = 2
+
+[node name="Incision" type="Node2D"]
+script = ExtResource("1_aq2jp")
+
+[node name="IncisionPath" parent="." instance=ExtResource("2_a1o1o")]
+curve = SubResource("Curve2D_gcq5k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1, 1.98148)
+texture = ExtResource("3_ic0u2")
+
+[connection signal="path_gelled" from="IncisionPath" to="." method="path_gelled"]
+[connection signal="treated" from="IncisionPath" to="." method="incision_made"]

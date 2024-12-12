@@ -1,0 +1,257 @@
+[gd_scene load_steps=40 format=3 uid="uid://cp2lhd3hpa055"]
+
+[ext_resource type="Script" path="res://tools/toolbox.gd" id="1_nxx7j"]
+[ext_resource type="Script" path="res://tools/forceps.gd" id="2_yqr4k"]
+[ext_resource type="AudioStream" uid="uid://d3yjjo50voxr5" path="res://sounds/tool sounds/forceps.wav" id="3_yh2u8"]
+[ext_resource type="Texture2D" uid="uid://dy7polunewo60" path="res://sprites/tools/forceps.png" id="4_87ioe"]
+[ext_resource type="Script" path="res://tools/laser.gd" id="5_10bxw"]
+[ext_resource type="AudioStream" uid="uid://bpdceovt1gjt5" path="res://sounds/tool sounds/laser.wav" id="6_hatsj"]
+[ext_resource type="Texture2D" uid="uid://bprlmgb5cic1a" path="res://sprites/tools/plate.png" id="7_3vipt"]
+[ext_resource type="Script" path="res://tools/scalpel.gd" id="8_jvydy"]
+[ext_resource type="PackedScene" uid="uid://ct47steeawfsl" path="res://tools/scalpel_trail.tscn" id="9_bo2ya"]
+[ext_resource type="AudioStream" uid="uid://wv2lxl46n4vj" path="res://sounds/tool sounds/scalpel.wav" id="9_v36l6"]
+[ext_resource type="AudioStream" uid="uid://c1ua5pafdfqq8" path="res://sounds/tool sounds/gel.wav" id="11_b2oq7"]
+[ext_resource type="Script" path="res://tools/gel.gd" id="11_h8go2"]
+[ext_resource type="PackedScene" uid="uid://dtvbd4cs4sa8i" path="res://tools/gel_puddle.tscn" id="12_r0skp"]
+[ext_resource type="Script" path="res://tools/tool.gd" id="14_bgddl"]
+[ext_resource type="Script" path="res://tools/sutures.gd" id="14_qf377"]
+[ext_resource type="Script" path="res://tools/tool_wheel.gd" id="15_k4lgl"]
+[ext_resource type="PackedScene" uid="uid://bhjjbtwe772dj" path="res://tools/suture_line.tscn" id="15_l262i"]
+[ext_resource type="AudioStream" uid="uid://b0bbw0f08bs5j" path="res://sounds/tool sounds/suture start.wav" id="15_s27sa"]
+[ext_resource type="AudioStream" uid="uid://cfv2whjfs7631" path="res://sounds/tool sounds/suture line.wav" id="16_1voxf"]
+[ext_resource type="PackedScene" uid="uid://xmqa3k6x11sh" path="res://tools/wheel_hex.tscn" id="16_ba4l7"]
+[ext_resource type="Texture2D" uid="uid://7v1r6cvmfg3u" path="res://sprites/tools/scalpel_icon.png" id="17_vos5e"]
+[ext_resource type="Script" path="res://tools/bandage.gd" id="18_715bk"]
+[ext_resource type="Texture2D" uid="uid://bgq8egkchdyr2" path="res://sprites/tools/gel.png" id="18_yh8k6"]
+[ext_resource type="Texture2D" uid="uid://buw4w0j1ho0t6" path="res://sprites/tools/laser_icon.png" id="19_ifmlc"]
+[ext_resource type="PackedScene" uid="uid://cv2wadc62fns7" path="res://tools/bandage_line.tscn" id="19_vo61s"]
+[ext_resource type="Texture2D" uid="uid://bjv3os263y13g" path="res://sprites/tools/bandage_roll.png" id="20_3siik"]
+[ext_resource type="Texture2D" uid="uid://bkviglmgvaq6h" path="res://sprites/tools/sutures_icon.png" id="22_4tf17"]
+[ext_resource type="AudioStream" uid="uid://bpgf82vuq4p7l" path="res://sounds/tool sounds/bandage.wav" id="22_6u8ka"]
+[ext_resource type="AudioStream" uid="uid://c4yu6v107y6pi" path="res://sounds/tool sounds/tool switch.wav" id="25_q4ub7"]
+[ext_resource type="Texture2D" uid="uid://c4neo0rdgs1oc" path="res://sprites/tools/bandage_icon.png" id="29_2xyq4"]
+[ext_resource type="Texture2D" uid="uid://25246h2afm5q" path="res://sprites/tools/wheel_hexagon.png" id="29_ttny5"]
+[ext_resource type="Script" path="res://tools/bandage_box.gd" id="30_l1m36"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aovt8"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46kvl"]
+radius = 193.003
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sj1k4"]
+radius = 1.5
+
+[sub_resource type="Curve" id="Curve_mx8b6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7epmt"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.714286)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqf1t"]
+gradient = SubResource("Gradient_7epmt")
+width = 10
+height = 10
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7cc2c"]
+b = Vector2(0, 0)
+
+[node name="Toolbox" type="Node"]
+script = ExtResource("1_nxx7j")
+
+[node name="ToolSwitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_q4ub7")
+
+[node name="Forceps" type="Area2D" parent="."]
+z_index = 3
+script = ExtResource("2_yqr4k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forceps"]
+shape = SubResource("CircleShape2D_aovt8")
+
+[node name="ForcepsSound" type="AudioStreamPlayer" parent="Forceps"]
+stream = ExtResource("3_yh2u8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Forceps"]
+visible = false
+position = Vector2(47, -22)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_87ioe")
+
+[node name="ExtractionTray" type="Area2D" parent="Forceps" groups=["tray"]]
+visible = false
+top_level = true
+z_index = 1
+position = Vector2(1026, 503)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forceps/ExtractionTray"]
+shape = SubResource("CircleShape2D_46kvl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Forceps/ExtractionTray"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_3vipt")
+
+[node name="Laser" type="Area2D" parent="."]
+script = ExtResource("5_10bxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
+shape = SubResource("CircleShape2D_sj1k4")
+
+[node name="Line2D" type="Line2D" parent="Laser"]
+visible = false
+top_level = true
+z_index = 3
+points = PackedVector2Array(1152, 0, 573, 536)
+width = 7.0
+width_curve = SubResource("Curve_mx8b6")
+default_color = Color(0.239216, 0.196078, 1, 1)
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="Laser"]
+stream = ExtResource("6_hatsj")
+
+[node name="Scalpel" type="Area2D" parent="."]
+z_index = 3
+script = ExtResource("8_jvydy")
+trail_scene = ExtResource("9_bo2ya")
+
+[node name="ScalpelSound" type="AudioStreamPlayer" parent="Scalpel"]
+stream = ExtResource("9_v36l6")
+
+[node name="ScalpelDot" type="Sprite2D" parent="Scalpel"]
+visible = false
+texture = SubResource("GradientTexture2D_wqf1t")
+
+[node name="DotCollisionDeprecated" type="CollisionShape2D" parent="Scalpel"]
+visible = false
+shape = SubResource("CircleShape2D_sj1k4")
+
+[node name="LineCollision" type="CollisionShape2D" parent="Scalpel"]
+shape = SubResource("SegmentShape2D_7cc2c")
+
+[node name="Gel" type="Area2D" parent="."]
+script = ExtResource("11_h8go2")
+puddle_scene = ExtResource("12_r0skp")
+
+[node name="GelSound" type="AudioStreamPlayer" parent="Gel"]
+stream = ExtResource("11_b2oq7")
+
+[node name="GelSound2" type="AudioStreamPlayer" parent="Gel"]
+stream = ExtResource("11_b2oq7")
+
+[node name="SoundTimer" type="Timer" parent="Gel"]
+wait_time = 0.25
+
+[node name="Sutures" type="Area2D" parent="."]
+z_index = 3
+script = ExtResource("14_qf377")
+line_scene = ExtResource("15_l262i")
+
+[node name="SutureStartSound" type="AudioStreamPlayer" parent="Sutures"]
+stream = ExtResource("15_s27sa")
+
+[node name="SutureLineSound" type="AudioStreamPlayer" parent="Sutures"]
+stream = ExtResource("16_1voxf")
+
+[node name="SutureLineSound2" type="AudioStreamPlayer" parent="Sutures"]
+stream = ExtResource("16_1voxf")
+
+[node name="Blank" type="Area2D" parent="."]
+script = ExtResource("14_bgddl")
+
+[node name="ToolWheel" type="Node2D" parent="."]
+z_index = 5
+script = ExtResource("15_k4lgl")
+
+[node name="ScHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+z_index = 3
+position = Vector2(78, 521)
+
+[node name="Sprite2D" type="Sprite2D" parent="ToolWheel/ScHex"]
+position = Vector2(3, -2.5)
+rotation = 0.966912
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("17_vos5e")
+
+[node name="FoHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(113, 474)
+
+[node name="Sprite2D" type="Sprite2D" parent="ToolWheel/FoHex"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_87ioe")
+
+[node name="GeHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(177, 456)
+
+[node name="Sprite2D" type="Sprite2D" parent="ToolWheel/GeHex"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("18_yh8k6")
+
+[node name="SyHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(241, 474)
+
+[node name="SuHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(276, 521)
+
+[node name="Sprite2D" type="Sprite2D" parent="ToolWheel/SuHex"]
+position = Vector2(1, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("22_4tf17")
+
+[node name="DrHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(241, 568)
+
+[node name="LaHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(177, 586)
+
+[node name="Sprite2D" type="Sprite2D" parent="ToolWheel/LaHex"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("19_ifmlc")
+
+[node name="UlHex" parent="ToolWheel" instance=ExtResource("16_ba4l7")]
+position = Vector2(113, 568)
+
+[node name="Center" type="Marker2D" parent="ToolWheel"]
+position = Vector2(177, 521)
+
+[node name="BandageBox" type="Node" parent="."]
+script = ExtResource("30_l1m36")
+
+[node name="BandageButton" type="Button" parent="BandageBox"]
+visible = false
+z_index = 5
+offset_left = 31.0
+offset_top = 304.0
+offset_right = 109.0
+offset_bottom = 355.0
+scale = Vector2(2, 2)
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("29_ttny5")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BandageBox/BandageButton"]
+position = Vector2(41.5, 25)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("29_2xyq4")
+
+[node name="Bandage" type="Area2D" parent="BandageBox"]
+script = ExtResource("18_715bk")
+bandage_scene = ExtResource("19_vo61s")
+
+[node name="BandageRollSprite" type="Sprite2D" parent="BandageBox/Bandage"]
+visible = false
+z_index = 4
+texture = ExtResource("20_3siik")
+
+[node name="BandageSound" type="AudioStreamPlayer" parent="BandageBox/Bandage"]
+stream = ExtResource("22_6u8ka")
+
+[connection signal="timeout" from="Gel/SoundTimer" to="Gel" method="play_sound"]
+[connection signal="equip_bandage" from="BandageBox" to="." method="equip_extra_tool"]
+[connection signal="button_down" from="BandageBox/BandageButton" to="BandageBox" method="_on_bandage_button_button_down"]

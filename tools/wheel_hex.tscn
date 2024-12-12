@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://xmqa3k6x11sh"]
+
+[ext_resource type="Texture2D" uid="uid://25246h2afm5q" path="res://sprites/tools/wheel_hexagon.png" id="1_v3d0j"]
+
+[node name="WheelHex" type="Sprite2D"]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture = ExtResource("1_v3d0j")

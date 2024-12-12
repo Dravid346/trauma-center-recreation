@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://6okakmulixyn"]
+
+[ext_resource type="Script" path="res://wounds/components/scalpel_path.gd" id="1_4llyn"]
+[ext_resource type="PackedScene" uid="uid://c7t4xbw4n26ma" path="res://wounds/components/scalpel_dot.tscn" id="2_wq58w"]
+
+[sub_resource type="Curve2D" id="Curve2D_p4mqp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 169, 393, 0, 0, 0, 0, 597, 280, 0, 0, 0, 0, 688, 551, 0, 0, 0, 0, 825, 192)
+}
+point_count = 4
+
+[node name="ScalpelPath" type="Path2D"]
+curve = SubResource("Curve2D_p4mqp")
+script = ExtResource("1_4llyn")
+dot_scene = ExtResource("2_wq58w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(169, 393)
+rotation = -0.258129
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+width = 3.0

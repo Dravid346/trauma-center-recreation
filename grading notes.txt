@@ -1,0 +1,3 @@
+Suture grading: done by the suturable code, because there's many variables for suturables. The SutureLine should send its points array and the array of intersections to the suturable area. It'll penalize threads being too long or too short, intersecting at an angle too far from 90 degrees, and having too much space between intersection points.
+
+Bandage grading: Done by the bandage, because there's only one kind of bandagable. It will take the start and end points of the bandagable and the position. It will penalize for being too far from the position, too long/short, or at too different of an angle (account for both bandaging directions).

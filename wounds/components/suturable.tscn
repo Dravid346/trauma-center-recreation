@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyq1uio4dcbqv"]
+
+[ext_resource type="Script" path="res://wounds/components/suturable.gd" id="1_vblvc"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5kryn"]
+a = Vector2(0, -50)
+b = Vector2(0, 50)
+
+[node name="Suturable" type="Area2D" groups=["suturable"]]
+script = ExtResource("1_vblvc")
+health = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_5kryn")
+
+[node name="MarkerA" type="Marker2D" parent="."]
+visible = false
+position = Vector2(0, -50)
+
+[node name="MarkerB" type="Marker2D" parent="."]
+visible = false
+position = Vector2(0, 50)
